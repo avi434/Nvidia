@@ -1,0 +1,22 @@
+# Use the official NVIDIA PyTorch image as the base
+FROM nvcr.io/nvidia/pytorch:24.02-py3
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip install --upgrade pip
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
+# Set the working directory
+WORKDIR /workspace
+
+# Expose ports (if needed)
+EXPOSE 8888 6006
