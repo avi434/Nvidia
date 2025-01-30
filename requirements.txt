@@ -1,0 +1,7 @@
+torch
+torchvision
+torchaudio
+nemo_toolkit[all]
+apex
+transformer-engine
+megatron-core
