@@ -1,0 +1,25 @@
+{
+  "name": "NeMo Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile", // Path to your Dockerfile (if using a custom image)
+    "context": ".." // Context path for the Docker build
+  },
+  "runArgs": [
+    "--shm-size=2g", // Increase shared memory size
+    "--ulimit", "memlock=-1", // Set memory lock limit
+    "--ulimit", "stack=67108864" // Set stack size
+  ],
+  "containerEnv": {
+    "PYTHON_VERSION": "3.8" // Set Python version
+  },
+  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt", // Commands to run after container creation
+  "extensions": [
+    "ms-python.python", // Python extension for VSCode
+    "ms-toolsai.jupyter" // Jupyter extension for VSCode
+  ],
+  "settings": {
+    "python.pythonPath": "/usr/local/bin/python3", // Set Python path
+    "python.linting.enabled": true, // Enable linting
+    "python.linting.pylintEnabled": true // Enable Pylint
+  }
+}
